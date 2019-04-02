@@ -7,9 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	$db = new Connection();
 	$respone_barang = array();
 
-	$jenis_barang = $_POST['jenis_barang'];
+	$search = $_POST['search'];
 
-	$barang = $db->JenisBarang($jenis_barang);
+	$barang = $db->SearchBarang($search);
 
 	if ($barang) 
 	{
@@ -21,6 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 	echo ($barang)?
 	json_encode(array("error" => 1, "respone_barang" => $respone_barang)):
-	json_encode(array("error" => 2, "respone_barang" => "Gagal melihat barang"));
+	json_encode(array("error" => 2, "respone_barang" => "Data tidak ditemukan"));
 }
 ?>
