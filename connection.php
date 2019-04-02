@@ -60,11 +60,12 @@ class Connection
 
 	public function UpdateUser($email, $nama, $alamat, $notlp)
 	{
-		$sql = "UPDATE user SET email = :email, nama = :nama, alamat = :alamat WHERE email = :email";
+		$sql = "UPDATE user SET email = :email, nama = :nama, alamat = :alamat, notlp = :notlp WHERE email = :email";
 		$data = $this->connect->prepare($sql);
 		$data->bindParam(':email', $email);
 		$data->bindParam(':nama', $nama);
 		$data->bindParam(':alamat', $alamat);
+		$data->bindParam(':notlp', $notlp);
 		$user = $data->execute();
 
 		return $user;
@@ -76,6 +77,17 @@ class Connection
 		$data = $this->connect->prepare($sql);
 		$data->bindParam(':email', $email);
 		$user = $data->execute();
+
+		return $user;
+	}
+
+	public function LihatUser($email)
+	{
+		$sql = "SELECT * FROM user WHERE email = :email";
+		$data = $this->connect->prepare($sql);
+		$data->bindParam(':email', $email);
+		$data->execute();
+		$user = $data->fetch();
 
 		return $user;
 	}
