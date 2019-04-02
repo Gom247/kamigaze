@@ -211,9 +211,9 @@ class Connection
 		$sql = "SELECT * FROM barang WHERE nama_barang LIKE '%$search = :search%' ORDER BY nama_barang ASC ";
 		$data = $this->connect->prepare($sql);
 		$data->execute();
-		$cari = $data->fetchAll();
+		$barang = $data->fetchAll();
 
-		return $cari;
+		return $barang;
 	}
 	
 }
