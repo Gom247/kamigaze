@@ -5,7 +5,7 @@ include "connection.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 	$db = new Connection();
-	$respone = array("error" => false);
+	$respone_user = array("error" => false);
 		
 	$email = $_POST['email'];
 	$password = $_POST['password'];

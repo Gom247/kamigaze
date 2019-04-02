@@ -94,7 +94,7 @@ class Connection
 
 	public function InsertBarang($kode_barang, $nama_barang, $jenis_barang, $produk_barang, $harga_barang)
 	{
-		$sql = "INSERT INTO barang (kode_barang, nama_barang, jenis_barang, produk_barang, harga_barang) VALUES (:kode_barang, :nama_barang, :jenis_barang, :produk_barang, :harga_barang)";
+		$sql = "INSERT INTO barang(kode_barang, nama_barang, jenis_barang, produk_barang, harga_barang) VALUES (:kode_barang, :nama_barang, :jenis_barang, :produk_barang, :harga_barang)";
 		$data = $this->connect->prepare($sql);
 		$data->bindParam(':kode_barang', $kode_barang);
 		$data->bindParam(':nama_barang', $nama_barang);
@@ -104,6 +104,7 @@ class Connection
 		$barang = $data->execute();
 
 		return $barang;
+
 	}
 
 	public function CekKodeBarang($kode_barang)
@@ -112,16 +113,17 @@ class Connection
 		$data = $this->connect->prepare($sql);
 		$data->bindParam(':kode_barang', $kode_barang);
 		$data->execute();
-		$data->fetch();
-
-		if ($data->rowCount() > 0) 
-		{
-			$data = null;
-			return true;
-		} else {
-			$data = null;
-			return false;
-		}
+        $data->fetch();
+ 
+        if ($data->rowCount() > 0) {
+            // user telah ada 
+            $data = null;
+            return true;
+        } else {
+            // user belum ada 
+            $data = null;
+            return false;
+        }
 	}
 
 	public function UpdateBarang($kode_barang, $nama_barang, $jenis_barang, $produk_barang, $harga_barang)
@@ -134,6 +136,16 @@ class Connection
 		$data->bindParam(':produk_barang', $produk_barang);
 		$data->bindParam(':harga_barang', $harga_barang);
 		$barang = $data->execute();
+
+		return $barang;
+	}
+
+	public function CekBarang()
+	{
+		$sql = "SELECT * FROM barang";
+		$data = $this->connect->prepare($sql);
+		$data->execute();
+		$barang = $data->fetchAll();
 
 		return $barang;
 	}
