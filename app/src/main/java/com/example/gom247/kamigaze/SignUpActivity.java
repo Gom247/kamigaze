@@ -72,6 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String error = response.body().getError();
                 String message = response.body().getMessage();
+                progress.dismiss();
 
                 if (error.equals("false")) {
 
@@ -91,7 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponModel> call, Throwable t) {
-
+                progress.dismiss();
             }
         });
     }
