@@ -78,12 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
                 String error = response.body().getError();
                 String message = response.body().getMessage();
+                progress.dismiss();
 
                 if (error.equals("false")) {
 
                     startActivity(new Intent(context, DashboardActivity.class));
                     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-                    progress.dismiss();
+
 
                 } else if (error.equals("true")) {
 

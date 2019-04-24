@@ -6,7 +6,7 @@ package com.example.gom247.kamigaze.api;
 
 public class UtilsApi {
 
-    public static final String Base_Url = "http://192.168.1.107/kamigaze/";
+    public static final String Base_Url = "http://192.168.43.45/kamigaze/";
 
     public static BaseApiServer getApiServer(){
         return  RetrofitServer.getClient(Base_Url).create(BaseApiServer.class);
